@@ -3,10 +3,52 @@ import huevosDePascua.*
 describe "group of tests" {
 
   test "test 1" {
-    assert.equals(50+50, 100)
-  }
-  test "test 2" {
-    assert.that(true)
+    caseria.huevos().clear()
+    caseria.huevos().addAll([matrioshka, huevoRepostero, conejo, huevoMixto])
+    assert.equals(matrioshka, caseria.masCalorias())
   }
 
+  test "test 2" {
+    caseria.huevos().clear()
+    caseria.huevos().addAll([matrioshka, huevoRepostero, conejo, huevoMixto])
+    caseria.comerPrimerHuevo(ana)
+    assert.that(ana.huevosComidos().contains(matrioshka))
+  }
+
+  test "test 3" {
+    caseria.huevos().clear()
+    caseria.huevos().addAll([matrioshka, huevoRepostero, conejo, huevoMixto])
+    caseria.comerPrimerHuevo(ana)
+    assert.equals(3, caseria.huevos().size())
+  }
+
+  test "test 4" {
+    caseria.huevos().clear()
+    caseria.huevos().addAll([matrioshka, huevoRepostero, conejo, huevoMixto])
+    caseria.comerPrimerHuevo(ana)
+    assert.equals(2, caseria.huevosConChocolateBlanco().size())
+  }
+
+  test "test 5" {
+    caseria.huevos().clear()
+    caseria.huevos().addAll([matrioshka, huevoRepostero, conejo, huevoMixto])
+    caseria.comerPrimerHuevo(ana)
+    assert.that(caseria.fueEncontrado(conejo).negate())
+  }
+
+  test "test 6" {
+    caseria.huevos().clear()
+    caseria.huevos().addAll([matrioshka, huevoRepostero, conejo, huevoMixto])
+    caseria.comerPrimerHuevo(ana)
+    assert.equals([huevoRepostero, huevoMixto], caseria.huevosConChocolateBlanco())
+  }
+
+  test "test 7" {
+    caseria.huevos().clear()
+    caseria.huevos().addAll([matrioshka, huevoRepostero, conejo, huevoMixto])
+    caseria.comerPrimerHuevo(ana)
+    caseria.comerHuevo(tito, huevoMixto)
+    caseria.comerLosRestantes(jose)
+    assert.that(caseria.estaEnfermo(ana) and caseria.estaEnfermo(jose))
+  }
 }

@@ -59,14 +59,18 @@ object caseria{
     }
 
     method comerPrimerHuevo(unChico) {
-        if(huevos.contains(huevos.first())){
-            unChico.comer(huevos.first())
+        if(not huevos.isEmpty()){
+            self.comerHuevo(unChico, huevos.first())
             huevos.remove(huevos.first())
         }
     }
 
     method comerLosRestantes(unChico){
         unChico.comerVarios(huevos)
+    }
+
+    method comerLosRestantes2(unChico){
+        huevos.forEach({x=>self.comerHuevo(unChico, x)})
     }
 
     method estaEnfermo(unChico) = unChico.estaEnfermo()
